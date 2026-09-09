@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenWallet - 智能綠色理財</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 手機主體外框 -->
+    <div class="phone-wrapper">
+        <!-- 實體按鈕細節 -->
+        <div class="phone-btn-left-1"></div>
+        <div class="phone-btn-left-2"></div>
+        <div class="phone-btn-left-3"></div>
+        <div class="phone-btn-right"></div>
+
+        <!-- 手機螢幕內部 -->
+        <div class="phone-screen">
+            
+            <!-- 動態島 Dynamic Island -->
+            <div class="dynamic-island">
+                <div class="camera-lens"></div>
+                <div class="sensor"></div>
+            </div>
+
+            <!-- iOS 頂部狀態列 -->
+            <div class="status-bar">
+                <span id="statusBarTime">09:41</span>
+                <div class="status-bar-icons">
+                    <!-- 行動網路 5G 圖示 -->
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
+                        <rect x="0" y="8" width="2.5" height="4" rx="0.5"/>
+                        <rect x="4" y="6" width="2.5" height="6" rx="0.5"/>
+                        <rect x="8" y="4" width="2.5" height="8" rx="0.5"/>
+                        <rect x="12" y="1" width="2.5" height="11" rx="0.5"/>
+                    </svg>
+                    <!-- Wi-Fi 圖示 (標準高清弧線) -->
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.5C4.82 1.5 1.94 2.86 0 5L1.4 6.4C3.01 4.62 5.37 3.5 8 3.5C10.63 3.5 12.99 4.62 14.6 6.4L16 5C14.06 2.86 11.18 1.5 8 1.5ZM8 5.5C5.9 5.5 3.99 6.4 2.6 7.91L4 9.31C5.03 8.2 6.44 7.5 8 7.5C9.56 7.5 10.97 8.2 12 9.31L13.4 7.91C12.01 6.4 10.1 5.5 8 5.5ZM8 9.5C7.17 9.5 6.5 10.17 6.5 11C6.5 11.83 7.17 12.5 8 12.5C8.83 12.5 9.5 11.83 9.5 11C9.5 10.17 8.83 9.5 8 9.5Z"/>
+                    </svg>
+                    <!-- 電池圖示 -->
+                    <svg width="22" height="11" viewBox="0 0 22 11" fill="none" stroke="currentColor" stroke-width="1">
+                        <rect x="0.5" y="0.5" width="18" height="10" rx="2.5" fill="none"/>
+                        <rect x="2" y="2" width="13" height="7" rx="1.5" fill="currentColor"/>
+                        <path d="M20 3.5v4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- App Header 頁首用戶個人資訊 -->
+            <div class="app-header">
+                <div class="user-profile">
+                    <div class="avatar">🌱</div>
+                    <div class="greeting-text">
+                        <span class="subtitle">歡迎回來</span>
+                        <span class="username">環保小尖兵</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn" aria-label="通知">
+                        🔔
+                        <span class="notification-badge"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 可滾動的主要 App 內容區 -->
+            <div class="content">
+                
+                <!-- Tab 1: 首頁 View -->
+                <div id="homeTab" class="tab-page active">
+                    <!-- 綠色減碳高利活存卡片 -->
+                    <div class="hero-card">
+                        <div class="hero-tag">⚡ 減碳活存利率 3.0%</div>
+                        <div class="progress-header">
+                            <div>
+                                <span class="current-value" id="currentKg">45</span>
+                                <span class="target-value">/ 60 kg CO₂e</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="progressBar"></div>
+                        </div>
+                        <div class="progress-hint-box" id="progressHintBox">
+                            <span id="progressHint">再減少 15 公斤即可解鎖次月 3% 活存！</span>
+                            <span>🎯</span>
+                        </div>
+                    </div>
+
+                    <!-- 資產數據卡片 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span>💼</span> 我的綠色資產
+                            </div>
+                            <span class="card-more" onclick="switchTab('redeemTab', 1)">兌換明細 ❯</span>
+                        </div>
+                        <div class="asset-item">
+                            <div class="asset-info">
+                                <div class="asset-icon point">🎁</div>
+                                <div>
+                                    <div class="asset-name">Hami Point 點數</div>
+                                    <div class="asset-sub">可折抵電信與消費</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="asset-val" id="hamiPoints">150 點</div>
+                                <div class="asset-trend">+15 本週</div>
+                            </div>
+                        </div>
+                        <div class="asset-item">
+                            <div class="asset-info">
+                                <div class="asset-icon etf">📈</div>
+                                <div>
+                                    <div class="asset-name">元大台灣50 (0050)</div>
+                                    <div class="asset-sub">零股累積微投資</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="asset-val" id="etfValue">$1,250 TWD</div>
+                                <div class="asset-trend">+1.8% 📈</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 互動按鈕區 -->
+                    <div class="action-card">
+                        <button class="simulate-btn" onclick="simulateScan()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                            模擬：掃描綠色消費發票
+                        </button>
+                    </div>
+
+                    <!-- 近期減碳紀錄與獎勵 -->
+                    <div class="card" style="margin-top: 16px;">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span>🌱</span> 近期減碳動態
+                            </div>
+                        </div>
+                        <div class="timeline" id="timelineList">
+                            <div class="timeline-item">
+                                <div class="timeline-left">
+                                    <div class="timeline-dot"></div>
+                                    <div>
+                                        <div class="timeline-title">YouBike 騎乘抵扣</div>
+                                        <div class="timeline-time">今天 08:30</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-reward">-1.2 kg</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-left">
+                                    <div class="timeline-dot"></div>
+                                    <div>
+                                        <div class="timeline-title">全家自備環保杯</div>
+                                        <div class="timeline-time">昨天 14:15</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-reward">-0.5 kg</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: 兌換 View (Redeem Page) -->
+                <div id="redeemTab" class="tab-page">
+                    <!-- 上方點數呈現 Banner -->
+                    <div class="points-header-card">
+                        <div class="points-label">Hami Point 可用點數</div>
+                        <div class="points-amount-box">
+                            <span class="points-amount" id="redeemHamiPoints">150</span>
+                            <span class="points-unit">點</span>
+                        </div>
+                        <div class="points-equivalent">約當 NT$ <span id="redeemNtVal">150</span> 價值</div>
+                    </div>
+
+                    <div class="section-title">
+                        <span>✨</span> 選擇兌換方式
+                    </div>
+
+                    <!-- 選擇 1: 購買 0050 零股 -->
+                    <div class="redeem-card">
+                        <div class="redeem-card-top">
+                            <div class="redeem-icon-badge stock">📈</div>
+                            <div>
+                                <div class="redeem-card-title">購買 0050 零股</div>
+                                <div class="redeem-card-desc">將 Hami Points 自動轉為元大台灣50 (0050) 零股資產，開啟微投資綠色理財！</div>
+                            </div>
+                        </div>
+                        <button class="redeem-opt-btn stock-btn" onclick="buyFractionalShares()">
+                            <span>📈 點數兌換 0050 零股</span>
+                        </button>
+                    </div>
+
+                    <!-- 選擇 2: 兌換商品 (導回 Hami Pay) -->
+                    <div class="redeem-card">
+                        <div class="redeem-card-top">
+                            <div class="redeem-icon-badge hamipay">🛍️</div>
+                            <div>
+                                <div class="redeem-card-title">兌換商品 (Hami Pay)</div>
+                                <div class="redeem-card-desc">兌換四大超商購物金、星巴克咖啡券、電信帳單折抵與豐富好禮。</div>
+                            </div>
+                        </div>
+                        <button class="redeem-opt-btn hamipay-btn" onclick="redirectToHamiPay()">
+                            <span>🛍️ 前往 Hami Pay 頁面兌換 ↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab 3: 回饋 View (Rewards Breakdown Page) -->
+                <div id="rewardsTab" class="tab-page">
+                    <!-- 上方累積回饋卡片 -->
+                    <div class="rewards-hero-card">
+                        <div class="hero-tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">⭐ 綠色獎勵回饋計畫</div>
+                        <div style="font-size: 12.5px; opacity: 0.85; margin-top: 5px;">本月減碳累計：<b id="rewardsCurrentKg">45</b> / 60 kg CO₂e</div>
+                        <div class="rewards-grid">
+                            <div class="rewards-metric">
+                                <div class="rewards-metric-val" id="rewardsTotalPoints">150 點</div>
+                                <div class="rewards-metric-label">累積獲得 Hami Points</div>
+                            </div>
+                            <div class="rewards-metric">
+                                <div class="rewards-metric-val" style="color: #f59e0b;">3.0%</div>
+                                <div class="rewards-metric-label">解鎖中活存利率</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">
+                        <span>📜</span> 回饋發放明細
+                    </div>
+
+                    <!-- 回饋明細列表 -->
+                    <div class="reward-detail-list" id="rewardsDetailList">
+                        <!-- 項目 1: 活存加碼獎勵 -->
+                        <div class="reward-detail-item">
+                            <div class="reward-detail-left">
+                                <div class="reward-icon-box rate">⚡</div>
+                                <div>
+                                    <div class="reward-detail-title">3.0% 高利活存加碼</div>
+                                    <div class="reward-detail-sub">本月減碳已達 45 kg (完成 75%)</div>
+                                </div>
+                            </div>
+                            <div class="reward-detail-right">
+                                <div class="reward-amount-tag" style="color: #db2777;">+1.0% 利率</div>
+                                <span class="reward-status-badge pending">解鎖進行中</span>
+                            </div>
+                        </div>
+
+                        <!-- 項目 2: 綠色消費發票 -->
+                        <div class="reward-detail-item">
+                            <div class="reward-detail-left">
+                                <div class="reward-icon-box scan">🧾</div>
+                                <div>
+                                    <div class="reward-detail-title">綠色消費發票回饋</div>
+                                    <div class="reward-detail-sub">減碳 -0.5 kg • 今天 17:36</div>
+                                </div>
+                            </div>
+                            <div class="reward-detail-right">
+                                <div class="reward-amount-tag">+15 點</div>
+                                <span class="reward-status-badge issued">已發放</span>
+                            </div>
+                        </div>
+
+                        <!-- 項目 3: YouBike 騎乘 -->
+                        <div class="reward-detail-item">
+                            <div class="reward-detail-left">
+                                <div class="reward-icon-box bike">🚲</div>
+                                <div>
+                                    <div class="reward-detail-title">YouBike 綠色騎乘</div>
+                                    <div class="reward-detail-sub">減碳 -1.2 kg • 今天 08:30</div>
+                                </div>
+                            </div>
+                            <div class="reward-detail-right">
+                                <div class="reward-amount-tag">+10 點</div>
+                                <span class="reward-status-badge issued">已發放</span>
+                            </div>
+                        </div>
+
+                        <!-- 項目 4: 全家自備環保杯 -->
+                        <div class="reward-detail-item">
+                            <div class="reward-detail-left">
+                                <div class="reward-icon-box cup">☕</div>
+                                <div>
+                                    <div class="reward-detail-title">全家自備環保杯折扣</div>
+                                    <div class="reward-detail-sub">減碳 -0.5 kg • 昨天 14:15</div>
+                                </div>
+                            </div>
+                            <div class="reward-detail-right">
+                                <div class="reward-amount-tag">+5 點</div>
+                                <span class="reward-status-badge issued">已發放</span>
+                            </div>
+                        </div>
+
+                        <!-- 項目 5: 電子發票載具登錄 -->
+                        <div class="reward-detail-item">
+                            <div class="reward-detail-left">
+                                <div class="reward-icon-box bind">🌱</div>
+                                <div>
+                                    <div class="reward-detail-title">綠色載具首次登錄</div>
+                                    <div class="reward-detail-sub">開戶好禮加碼 • 2026-09-01</div>
+                                </div>
+                            </div>
+                            <div class="reward-detail-right">
+                                <div class="reward-amount-tag">+50 點</div>
+                                <span class="reward-status-badge issued">已發放</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: 帳號 View -->
+                <div id="accountTab" class="tab-page">
+                    <div class="card" style="text-align: center; padding: 36px 18px;">
+                        <div style="font-size: 38px; margin-bottom: 8px;">👤</div>
+                        <div style="font-weight: 700; color: #0f172a; margin-bottom: 6px;">環保小尖兵帳號</div>
+                        <div style="font-size: 12.5px; color: #64748b;">已綁定 Hami Pay 帳號與證券交割戶</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 底部 Tab 導覽列 -->
+            <div class="bottom-nav">
+                <div class="nav-item active" onclick="switchTab('homeTab', 0)">
+                    <span class="nav-icon">🏠</span>
+                    <span>首頁</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('redeemTab', 1)">
+                    <span class="nav-icon">🎁</span>
+                    <span>兌換</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('rewardsTab', 2)">
+                    <span class="nav-icon">⭐</span>
+                    <span>回饋</span>
+                </div>
+                <div class="nav-item" onclick="switchTab('accountTab', 3)">
+                    <span class="nav-icon">👤</span>
+                    <span>帳號</span>
+                </div>
+                <div class="home-indicator"></div>
+            </div>
+
+            <!-- 相機掃描模擬 Overlay -->
+            <div class="scan-overlay" id="scanOverlay">
+                <div class="scan-box">
+                    <div class="scan-line"></div>
+                </div>
+                <div class="scan-text">正在辨識綠色消費電子發票...</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JS 邏輯 -->
+    <script src="script.js"></script>
+</body>
+</html>

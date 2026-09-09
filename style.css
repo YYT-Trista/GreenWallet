@@ -1,0 +1,900 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+:root {
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --primary-light: #d1fae5;
+    --primary-gradient: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    --accent-gold: #f59e0b;
+    --bg-page: #e2e8f0;
+    --bg-phone: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #f1f5f9;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 25px -5px rgba(16, 185, 129, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   超擬真手機外框 Phone Frame Mockup (自動自適應螢幕)
+   ========================================== */
+.phone-wrapper {
+    position: relative;
+    padding: 12px;
+    background: linear-gradient(145deg, #2d3748, #1a202c);
+    border-radius: 48px;
+    box-shadow: 
+        0 25px 55px rgba(15, 23, 42, 0.2),
+        0 10px 22px rgba(15, 23, 42, 0.12),
+        inset 0 0 2px rgba(255, 255, 255, 0.5);
+    max-height: 98vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 手機側邊實體按鈕 */
+.phone-btn-left-1, .phone-btn-left-2, .phone-btn-left-3, .phone-btn-right {
+    position: absolute;
+    background: linear-gradient(to right, #4a5568, #2d3748);
+    border-radius: 3px;
+}
+.phone-btn-left-1 { left: -3px; top: 110px; width: 3px; height: 26px; } /* 靜音鍵 */
+.phone-btn-left-2 { left: -3px; top: 150px; width: 3px; height: 46px; } /* 音量+ */
+.phone-btn-left-3 { left: -3px; top: 206px; width: 3px; height: 46px; } /* 音量- */
+.phone-btn-right  { right: -3px; top: 170px; width: 3px; height: 70px; } /* 電源鍵 */
+
+.phone-screen {
+    width: 375px;
+    height: 780px;
+    max-height: calc(98vh - 24px);
+    background-color: var(--bg-phone);
+    border-radius: 38px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.836);
+}
+
+/* 動態島 Dynamic Island */
+.dynamic-island {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 26px;
+    background-color: #000000;
+    border-radius: 18px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.camera-lens {
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #1e293b 30%, #000 70%);
+    border-radius: 50%;
+    position: relative;
+}
+.camera-lens::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 2.5px;
+    height: 2.5px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+.sensor {
+    width: 8px;
+    height: 8px;
+    background: #0f172a;
+    border-radius: 50%;
+}
+
+/* iOS 頂部狀態列 Status Bar */
+.status-bar {
+    height: 42px;
+    padding: 10px 22px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    z-index: 90;
+}
+
+.status-bar-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==========================================
+   App Header & Profile Section
+   ========================================== */
+.app-header {
+    padding: 10px 18px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-phone);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a7f3d0, #10b981);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+.greeting-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.greeting-text .subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.greeting-text .username {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+
+.icon-btn:active {
+    transform: scale(0.92);
+}
+
+.notification-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+/* ==========================================
+   手機 App 主內容區塊 Main Scroll Content
+   ========================================== */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 16px 16px;
+    scrollbar-width: none;
+}
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Tab切換分頁元件 */
+.tab-page {
+    display: none;
+    animation: fadeInTab 0.3s ease forwards;
+}
+
+.tab-page.active {
+    display: block;
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 綠色活存主卡片 */
+.hero-card {
+    background: linear-gradient(135deg, #059669 0%, #10b981 60%, #34d399 100%);
+    border-radius: 20px;
+    padding: 18px;
+    color: white;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 130px;
+    height: 130px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.current-value {
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.target-value {
+    font-size: 14px;
+    opacity: 0.85;
+    font-weight: 500;
+}
+
+.progress-bar-bg {
+    background-color: rgba(255, 255, 255, 0.25);
+    height: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, #fef08a, #f59e0b);
+    height: 100%;
+    width: 75%;
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.progress-hint-box {
+    margin-top: 12px;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 11.5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(4px);
+}
+
+/* 常規卡片容器 */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-size: 14.5px;
+    color: var(--text-main);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-more {
+    font-size: 11.5px;
+    color: var(--primary-dark);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 資產列表項目 */
+.asset-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #f1f5f9;
+}
+
+.asset-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.asset-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.asset-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.asset-icon.point { background-color: #fef3c7; color: #d97706; }
+.asset-icon.etf { background-color: #dbeafe; color: #2563eb; }
+
+.asset-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.asset-sub {
+    font-size: 10.5px;
+    color: var(--text-muted);
+}
+
+.asset-val {
+    text-align: right;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.asset-trend {
+    font-size: 10.5px;
+    color: #10b981;
+    font-weight: 600;
+}
+
+/* 掃描互動按鈕 */
+.action-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.simulate-btn {
+    background: var(--text-main);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    padding: 13px;
+    width: 100%;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.simulate-btn:hover {
+    background: #1e293b;
+    transform: translateY(-1px);
+}
+
+.simulate-btn:active {
+    transform: scale(0.98);
+}
+
+/* 近期減碳動態 Transaction Feed */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12.5px;
+}
+
+.timeline-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.timeline-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--primary);
+}
+
+.timeline-title {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.timeline-time {
+    font-size: 10.5px;
+    color: var(--text-muted);
+}
+
+.timeline-reward {
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+/* ==========================================
+   兌換頁面 (Redeem Page) 專用樣式
+   ========================================== */
+.points-header-card {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-radius: 20px;
+    padding: 18px;
+    color: white;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.points-header-card::after {
+    content: '🎁';
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    font-size: 60px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.points-label {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.points-amount-box {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.points-amount {
+    font-size: 34px;
+    font-weight: 800;
+    color: #f59e0b;
+    line-height: 1;
+}
+
+.points-unit {
+    font-size: 15px;
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+.points-equivalent {
+    font-size: 11px;
+    color: #64748b;
+    background: rgba(255, 255, 255, 0.08);
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.section-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 14px 0 10px 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.redeem-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.redeem-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.redeem-card-top {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.redeem-icon-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.redeem-icon-badge.stock {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+}
+
+.redeem-icon-badge.hamipay {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+}
+
+.redeem-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 3px;
+}
+
+.redeem-card-desc {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.35;
+}
+
+.redeem-opt-btn {
+    width: 100%;
+    padding: 11px;
+    border-radius: 12px;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.redeem-opt-btn.stock-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.redeem-opt-btn.stock-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+}
+
+.redeem-opt-btn.hamipay-btn {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    color: white;
+    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.2);
+}
+
+.redeem-opt-btn.hamipay-btn:hover {
+    background: linear-gradient(135deg, #c2410c, #9a3412);
+}
+
+/* ==========================================
+   回饋頁面 (Rewards Page & Detail) 專用樣式
+   ========================================== */
+.rewards-hero-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 20px;
+    padding: 18px;
+    color: white;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+}
+
+.rewards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.rewards-metric {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rewards-metric-val {
+    font-size: 20px;
+    font-weight: 800;
+    color: #10b981;
+}
+
+.rewards-metric-label {
+    font-size: 10.5px;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+
+.reward-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reward-detail-item {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+
+.reward-detail-item:hover {
+    transform: translateY(-1px);
+}
+
+.reward-detail-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reward-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.reward-icon-box.scan { background: #d1fae5; color: #059669; }
+.reward-icon-box.bike { background: #e0e7ff; color: #4338ca; }
+.reward-icon-box.cup  { background: #fef3c7; color: #d97706; }
+.reward-icon-box.rate { background: #fce7f3; color: #db2777; }
+.reward-icon-box.bind { background: #ccfbf1; color: #0d9488; }
+
+.reward-detail-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.reward-detail-sub {
+    font-size: 10.5px;
+    color: var(--text-muted);
+}
+
+.reward-detail-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.reward-amount-tag {
+    font-size: 13px;
+    font-weight: 800;
+    color: #059669;
+}
+
+.reward-status-badge {
+    font-size: 9.5px;
+    padding: 2.5px 7px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.reward-status-badge.issued {
+    background: #d1fae5;
+    color: #047857;
+}
+
+.reward-status-badge.pending {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+/* ==========================================
+   手機底部導覽列 Bottom Navigation Bar
+   ========================================== */
+.bottom-nav {
+    height: 64px;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 8px 12px;
+    position: relative;
+    z-index: 80;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: var(--text-muted);
+    font-size: 10.5px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 50px;
+    transition: color 0.2s;
+}
+
+.nav-item.active {
+    color: var(--primary-dark);
+}
+
+.nav-icon {
+    font-size: 18px;
+}
+
+/* 底部 Home Indicator 橫條 */
+.home-indicator {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background-color: #0f172a;
+    border-radius: 2px;
+    z-index: 95;
+}
+
+/* ==========================================
+   掃描動畫 Overlay (模擬相機)
+   ========================================== */
+.scan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.92);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    color: white;
+}
+
+.scan-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scan-box {
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--primary);
+    border-radius: 18px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    overflow: hidden;
+}
+
+.scan-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    box-shadow: 0 0 15px var(--primary);
+    position: absolute;
+    top: 0;
+    animation: scanMove 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes scanMove {
+    0% { top: 0%; }
+    100% { top: 98%; }
+}
+
+.scan-text {
+    margin-top: 18px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #94a3b8;
+}
